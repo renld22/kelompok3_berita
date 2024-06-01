@@ -45,16 +45,6 @@
                      <input type="name" class="form-control" id="name" placeholder="Nama Lengkap">
                  </div>
                  <div class="form-group">
-                     <label>File upload</label>
-                     <input type="file" name="img[]" class="file-upload-default">
-                     <div class="input-group col-xs-12">
-                         <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                         <span class="input-group-append">
-                             <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                         </span>
-                     </div>
-                 </div>
-                 <div class="form-group">
                      <label for="exampleInputCity1">City</label>
                      <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
                  </div>
