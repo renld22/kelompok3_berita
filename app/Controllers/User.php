@@ -13,13 +13,13 @@ class User extends BaseController
     {
         $this->user = new UserModel();
 
-        $this->rules = [
-            'username' => 'required',
-            'password' => 'required',
-            'name' => 'required',
-            'email' => 'required',
-            'hak_akses' => 'required'
-        ];
+        // $this->rules = [
+        //     'username' => 'required',
+        //     'password' => 'required',
+        //     'name' => 'required',
+        //     'email' => 'required',
+        //     'hak_akses' => 'required'
+        // ];
     }
 
     public function index()
@@ -45,14 +45,22 @@ class User extends BaseController
         $data = [
             'username' => $this->request->getVar('username'),
             'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
-            'nama_user' => $this->request->getVar('nama_user')
+            'name' => $this->request->getVar('name'),
+            'email' => $this->request->getVar('email'),
+            'hak_akses' => $this->request->getVar('hak_akses')
         ];
-        if (!$this->validateData($data, $this->rules)) {
+        if (!$this->validateData($data, [
+            'username' => 'required',
+            'password' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'hak_akses' => 'required'
+        ])) {
             return redirect()->back()->with('message', $this->validator->getErrors());
         }
 
         $this->user->save($data);
-        return redirect()->route('user::index')->with('message', 'Tambah Data Berhasil');
+        return redirect()->route('User::tambah')->with('success', 'Tambah Data Berhasil');
     }
 
     public function edit($id)
@@ -62,28 +70,39 @@ class User extends BaseController
             'user' => $this->user->find($id),
         ];
 
-        return view('user/ubah', $data);
+        return view('user/edit', $data);
     }
 
     public function update($id)
     {
         $data = [
             'username' => $this->request->getVar('username'),
-            'password' => password_hash($this->request->getVar('password'), PASSWORD_BCRYPT),
-            'nama_user' => $this->request->getVar('nama_user')
+            'name' => $this->request->getVar('name'),
+            'email' => $this->request->getVar('email'),
+            'hak_akses' => $this->request->getVar('hak_akses')
+
         ];
-        if (!$this->validateData($data, $this->rules)) {
+        if (!$this->validateData($data, [
+            'username' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'hak_akses' => 'required'
+        ])) {
             return redirect()->back()->with('message', $this->validator->getErrors());
+        }
+
+        if ($this->request->getVar('password')) {
+            $data['password'] = password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
         }
 
         $this->user->update($id, $data);
 
-        return redirect()->route('user::index')->with('message', 'Ubah Data Bsehasil');
+        return redirect()->route('User::index')->with('message', 'Ubah Data Bsehasil');
     }
 
     public function hapus($id)
     {
         $this->user->delete($id);
-        return redirect()->route('user::index')->with('message', 'Hapus Data Bsehasil');
+        return redirect()->route('User::index')->with('message', 'Hapus Data Bsehasil');
     }
 }

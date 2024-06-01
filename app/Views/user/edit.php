@@ -38,29 +38,29 @@
 
          <?php endif ?>
          </p>
-         <form class="forms-sample" action="<?= url_to('User::save') ?>" method="post">
+         <form class="forms-sample" action="<?= url_to('User::update', $user['id_user']) ?>" method="post">
              <div class="form-group">
                  <label for="exampleInputName1">Username</label>
-                 <input type="text" name="username" class="form-control" id="username" placeholder="Name">
+                 <input type="text" name="username" class="form-control" id="username" placeholder="Name" value="<?= $user['username'] ?>">
              </div>
-             <div class="form-group">
+             <div class=" form-group">
                  <label for="exampleInputPassword4">Password</label>
                  <input type="password" name="password" class="form-control" id="password" placeholder="Password">
              </div>
-             <div class="form-group">
+             <div class=" form-group">
                  <label for="exampleInputEmail3">Nama Lengkap</label>
-                 <input type="name" name="name" class="form-control" id="name" placeholder="Nama Lengkap">
+                 <input type="name" name="name" class="form-control" id="name" placeholder="Nama Lengkap" value="<?= $user['name'] ?>">
              </div>
-             <div class="form-group">
+             <div class=" form-group">
                  <label for="exampleInputEmail3">Email address</label>
-                 <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+                 <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?= $user['email'] ?>">
              </div>
-             <div class="form-group">
+             <div class=" form-group">
                  <label for="exampleSelectGender">Posisi</label>
                  <select class="form-control" id="posisi" name="hak_akses">
                      <option value="">Pilih</option>
-                     <option value="1">Admin</option>
-                     <option value="2">Author</option>
+                     <option value="1" <?= $user['hak_akses'] == 1 ? 'selected' : '' ?>>Admin</option>
+                     <option value="2" <?= $user['hak_akses'] == 2 ? 'selected' : '' ?>>Author</option>
                  </select>
              </div>
              <button type="submit" class="btn btn-primary mr-2">Submit</button>
