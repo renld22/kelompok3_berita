@@ -18,3 +18,6 @@ $routes->post('/artikel/save', 'Artikel::save');
 $routes->get('/artikel/ubah/(:num)', 'Artikel::edit/$1');
 $routes->post('/artikel/update/(:num)', 'Artikel::update/$1');
 $routes->get('/artikel/hapus/(:num)', 'Artikel::hapus/$1');
+$routes->get('/login', 'Login::index');
+$routes->post('/login/process', 'Login::process');
+$routes->get('/logout', 'Login::logout');
