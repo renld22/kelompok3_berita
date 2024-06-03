@@ -24,12 +24,13 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>judul</th>
-                        <th>konten</th>
-                        <th>ringkasan</th>
-                        <th>gambar</th>
-                        <th>tanggal</th>
-                        <th>aksi</th>
+                        <th>Judul</th>
+                        <th>Konten</th>
+                        <th>Ringkasan</th>
+                        <th>Gambar</th>
+                        <th>Tanggal</th>
+                        <th>Author</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,8 +43,9 @@
                             <td><?php echo $artikel['judul'] ?></td>
                             <td><?php echo $artikel['konten'] ?></td>
                             <td><?php echo $artikel['ringkasan'] ?></td>
-                            <td><?php echo $artikel['gambar'] ?></td>
+                            <td><img src="<?= base_url('gambar/').$artikel['gambar']?>" alt=""></td>
                             <td><?php echo $artikel['tanggal'] ?></td>
+                            <td><?php echo $artikel['name'] ?></td>
                             <td class="text-center">
                                 <a href="<?= url_to('Artikel::edit', $artikel['id_artikel']); ?>" class="btn btn-warning fa fa-pencil-square-o"> Edit</a>
                                 <a href="<?= url_to('Artikel::hapus', $artikel['id_artikel']); ?>" class=" btn btn-danger fa fa-trash-o"> Hapus</a>

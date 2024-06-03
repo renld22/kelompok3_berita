@@ -15,7 +15,7 @@ class ArtikelModel extends Model
      * allow field
      */
     protected $allowedFields = [
-        'judul', 'konten', 'ringkasan', 'gambar', 'tanggal'
+        'judul', 'konten', 'ringkasan', 'gambar', 'tanggal', 'id_user'
     ];
     protected $primaryKey       = 'id_artikel';
 }

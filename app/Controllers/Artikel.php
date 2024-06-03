@@ -27,8 +27,13 @@ class Artikel extends BaseController
         // if (!session()->get('username')) {
         //     return redirect()->route('Login::index');
         // }
+        $berita = $this->artikel->join('user', 'user.id_user = artikel.id_user');
+        if (session()->get('hak_akses') == 2) {
+            $berita->where('artikel.id_user', session()->id_user);
+        }
+    // var_dump(session()->get('id_user')); die;
         $data = [
-            'data' => $this->artikel->join('user', 'user.id_user = artikel.id_user')->paginate('5', 'artikel'),
+            'data' => $berita->paginate('5', 'artikel'),
             'title' => 'Data Artikel',
             'pager' => $this->artikel->pager,
         ];
@@ -42,23 +47,30 @@ class Artikel extends BaseController
 
     public function save()
     {
+        $gambar = $this->request->getFile('gambar');
+        $filename = $gambar->getRandomName();
+        $gambar->move(ROOTPATH . 'public/gambar', $filename);
+        $tanggal = (new \DateTime())->format('Y-m-d');
         $data = [
             'judul' => $this->request->getVar('judul'),
             'konten' => $this->request->getVar('konten'),
             'ringkasan' => $this->request->getVar('ringkasan'),
-            'gambar' => $this->request->getVar('gambar'),
-            'tanggal' => $this->request->getVar('tanggal')
-            
+            'gambar' => $filename,
+            'tanggal' => $tanggal
+
         ];
         if (!$this->validateData($data, [
             'judul' => 'required',
             'konten' => 'required',
             'ringkasan' => 'required',
             'gambar' => 'required',
-            'tanggal' => 'required'
         ])) {
             return redirect()->back()->with('message', $this->validator->getErrors());
         }
+
+        $data['id_user'] = session()->get('id_user');
+
+        // var_dump($data); die;
 
         $this->artikel->save($data);
         return redirect()->route('Artikel::tambah')->with('success', 'Tambah Data Berhasil');
@@ -66,29 +78,30 @@ class Artikel extends BaseController
 
     public function edit($id)
     {
-       
-            
-            $data = [
-                'title' => 'Edit Data artikel',
-                'data' => $this->artikel->join('user', 'user.id_user = artikel.id_user')
-                    ->findAll(),
-                'artikel' => $this->artikel->find($id),
-                'user' => $this->user->findAll()
-            ];
-        
-    
+
+
+        $data = [
+            'title' => 'Edit Data artikel',
+            'data' => $this->artikel->join('user', 'user.id_user = artikel.id_user')
+                ->findAll(),
+            'artikel' => $this->artikel->find($id),
+        ];
+
+
 
         return view('artikel/edit', $data);
     }
 
     public function update($id)
     {
+        $gambar = $this->request->getFile('gambar');
+        $filename = $gambar->getRandomName();
+        $gambar->move(ROOTPATH . 'public/gambar', $filename);
         $data = [
             'judul' => $this->request->getVar('judul'),
             'konten' => $this->request->getVar('konten'),
             'ringkasan' => $this->request->getVar('ringkasan'),
-            'gambar' => $this->request->getVar('gambar'),
-            'tanggal' => $this->request->getVar('tanggal')
+            'gambar' => $filename
 
         ];
         if (!$this->validateData($data, [
@@ -96,12 +109,12 @@ class Artikel extends BaseController
             'konten' => 'required',
             'ringkasan' => 'required',
             'gambar' => 'required',
-            'tanggal' => 'required'
+
         ])) {
             return redirect()->back()->with('message', $this->validator->getErrors());
         }
 
-       
+
         $this->artikel->update($id, $data);
 
         return redirect()->route('Artikel::index')->with('message', 'Ubah Data Bsehasil');

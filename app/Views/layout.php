@@ -106,10 +106,11 @@
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                             <i class="icon-head menu-icon"></i>
-                            <span class="menu-title">User Pages</span>
+                            <span class="menu-title">User</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="auth">
@@ -122,7 +123,7 @@
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
                             <i class="icon-columns menu-icon"></i>
-                            <span class="menu-title">Form elements</span>
+                            <span class="menu-title">Form Artikel</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="form-elements">
@@ -142,7 +143,13 @@
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                                     <h3 class="font-weight-bold">Welcome <?= session()->get('name'); ?></h3>
-                                    <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
+                                    <h6 class="font-weight-normal mb-0 text-primary">
+                                        <?php if (session()->get('hak_akses') == 1) :  ?>
+                                            Admin
+                                        <?php elseif (session()->get('hak_akses') == 2) : ?>
+                                            Author
+                                        <?php endif; ?>
+                                    </h6>
                                 </div>
                                 <div class="col-12 col-xl-4">
                                     <div class="justify-content-end d-flex">
@@ -161,10 +168,11 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- content-wrapper ends -->
+                        <?= $this->renderSection('content'); ?>
                     </div>
                 </div>
-                <!-- content-wrapper ends -->
-                <?= $this->renderSection('content'); ?>
 
                 <!-- partial:partials/_footer.html -->
                 <footer class="footer">

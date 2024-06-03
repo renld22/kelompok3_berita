@@ -31,6 +31,8 @@ class Login extends BaseController
                 session()->set([
                     'username' => $dataUser['username'],
                     'name' => $dataUser['name'],
+                    'hak_akses' => $dataUser['hak_akses'],
+                    'id_user' => $dataUser['id_user'],
                     'logged_in' => TRUE
                 ]);
                 return redirect()->to(base_url('/'));

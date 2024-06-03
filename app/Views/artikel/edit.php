@@ -38,7 +38,7 @@
 
          <?php endif ?>
          </p>
-         <form class="forms-sample" action="<?= url_to('User::update', $user['id_artikel']) ?>" method="post">
+         <form class="forms-sample" action="<?= url_to('Artikel::update', $artikel['id_artikel']) ?>" method="post" enctype="multipart/form-data">
              <div class="form-group">
                  <label for="exampleInputJudul">Judul</label>
                  <input type="text" name="judul" class="form-control" id="judul" placeholder="Judul" value="<?= $artikel['judul'] ?>">
@@ -50,18 +50,18 @@
              <div class=" form-group">
                  <label for="exampleInputRingkasan">Ringkasan</label>
                  <input type="text" name="ringkasan" class="form-control" id="ringkasan" placeholder="Ringkasan" value="<?= $artikel['ringkasan'] ?>">
+             </div>
+             <div class="form-group">
+                 <label>File upload</label>
+                 <input type="file" name="gambar" class="file-upload-default" style="display: none;">
+                 <div class="input-group col-xs-12">
+                     <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                     <span class="input-group-append">
+                         <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                     </span>
                  </div>
-                    <div class="form-group">
-                      <label>File upload</label>
-                      <input type="file" name="img[]" class="file-upload-default">
-                      <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                        <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                        </span>
-                      </div>
-                    </div>
-                    <div class=" form-group">
+             </div>
+             <div class=" form-group">
                  <label for="exampleInputTanggal">Tanggal</label>
                  <input type="date" name="tanggal" class="form-control" id="tanggal" placeholder="tanggal">
              </div>
@@ -71,4 +71,14 @@
          </div>
      </div>
  </div>
+ <script>
+     document.querySelector('.file-upload-browse').addEventListener('click', function() {
+         document.querySelector('.file-upload-default').click();
+     });
+
+     document.querySelector('.file-upload-default').addEventListener('change', function() {
+         var fileName = this.files[0].name;
+         document.querySelector('.file-upload-info').value = fileName;
+     });
+ </script>
  <?= $this->endSection() ?>
