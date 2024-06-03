@@ -227,7 +227,7 @@
 
         <h1>Welcome to CodeIgniter <?= CodeIgniter\CodeIgniter::CI_VERSION ?></h1>
 
-        <h2>hhhhhhhhhhhhhhhhhhh</h2>
+        <h2></h2>
 
     </div>
 
