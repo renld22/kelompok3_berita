@@ -31,7 +31,7 @@ class Artikel extends BaseController
         if (session()->get('hak_akses') == 2) {
             $berita->where('artikel.id_user', session()->id_user);
         }
-    // var_dump(session()->get('id_user')); die;
+        // var_dump(session()->get('id_user')); die;
         $data = [
             'data' => $berita->paginate('5', 'artikel'),
             'title' => 'Data Artikel',
@@ -94,21 +94,27 @@ class Artikel extends BaseController
 
     public function update($id)
     {
-        $gambar = $this->request->getFile('gambar');
-        $filename = $gambar->getRandomName();
-        $gambar->move(ROOTPATH . 'public/gambar', $filename);
+        $tanggal = (new \DateTime())->format('Y-m-d');
         $data = [
             'judul' => $this->request->getVar('judul'),
             'konten' => $this->request->getVar('konten'),
             'ringkasan' => $this->request->getVar('ringkasan'),
-            'gambar' => $filename
+            'tanggal' => $tanggal
 
         ];
+
+        $gambar = $this->request->getFile('gambar');
+        if ($gambar->getName()) {
+            $filename = $gambar->getRandomName();
+
+            $gambar->move(ROOTPATH . 'public/gambar', $filename);
+
+            $data['gambar'] = $filename;
+        }
         if (!$this->validateData($data, [
             'judul' => 'required',
             'konten' => 'required',
             'ringkasan' => 'required',
-            'gambar' => 'required',
 
         ])) {
             return redirect()->back()->with('message', $this->validator->getErrors());

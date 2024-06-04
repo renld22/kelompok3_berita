@@ -45,7 +45,7 @@
              </div>
              <div class=" form-group">
                  <label for="exampleInputKonten">Konten</label>
-                 <input type="text" name="konten" class="form-control" id="konten" placeholder="konten">
+                 <textarea name="konten" id="konten"><?= $artikel['konten']?></textarea>
              </div>
              <div class=" form-group">
                  <label for="exampleInputRingkasan">Ringkasan</label>

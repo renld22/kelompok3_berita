@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="/css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="/images/favicon.png" />
+    <!-- summernote -->
+    <link rel="stylesheet" href="/summernote/summernote.min.css">
 </head>
 
 <body>
@@ -106,7 +108,7 @@
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                             <i class="icon-head menu-icon"></i>
@@ -120,6 +122,7 @@
                             </ul>
                         </div>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
                             <i class="icon-columns menu-icon"></i>
@@ -213,6 +216,14 @@
     <script src="/js/dashboard.js"></script>
     <script src="/js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
+    <!-- summernote -->
+    <script src="/summernote/summernote.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#konten').summernote();
+        });
+    </script>
 </body>
 
 </html>

@@ -45,7 +45,7 @@
              </div>
              <div class="form-group">
                  <label for="exampleInputKonten">Konten</label>
-                 <input type="text" name="konten" class="form-control" id="konten" placeholder="konten">
+                 <textarea name="konten" id="konten"></textarea>
              </div>
              <div class="form-group">
                  <label for="exampleInputringkasan">Ringkasan</label>
