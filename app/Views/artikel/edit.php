@@ -61,10 +61,10 @@
                      </span>
                  </div>
              </div>
-             <div class=" form-group">
+             <!-- <div class=" form-group">
                  <label for="exampleInputTanggal">Tanggal</label>
                  <input type="date" name="tanggal" class="form-control" id="tanggal" placeholder="tanggal">
-             </div>
+             </div> -->
              <button type="submit" class="btn btn-primary mr-2">Submit</button>
              <button class="btn btn-light">Cancel</button>
          </form>

@@ -21,3 +21,4 @@ $routes->get('/artikel/hapus/(:num)', 'Artikel::hapus/$1');
 $routes->get('/login', 'Login::index');
 $routes->post('/login/process', 'Login::process');
 $routes->get('/logout', 'Login::logout');
+$routes->get('/berita', 'Berita::index');

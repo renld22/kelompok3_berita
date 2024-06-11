@@ -24,14 +24,12 @@ class Artikel extends BaseController
 
     public function index()
     {
-        // if (!session()->get('username')) {
-        //     return redirect()->route('Login::index');
-        // }
+        
         $berita = $this->artikel->join('user', 'user.id_user = artikel.id_user');
         if (session()->get('hak_akses') == 2) {
             $berita->where('artikel.id_user', session()->id_user);
         }
-        // var_dump(session()->get('id_user')); die;
+        
         $data = [
             'data' => $berita->paginate('5', 'artikel'),
             'title' => 'Data Artikel',
