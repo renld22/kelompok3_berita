@@ -129,5 +129,69 @@ class Artikel extends BaseController
         $this->artikel->delete($id);
         return redirect()->route('Artikel::index')->with('message', 'Hapus Data Bsehasil');
     }
-    
+
+    function uploadGambar()
+    {
+        if ($this->request->getFile('file')) {
+            $dataFile = $this->request->getFile('file');
+            $fileName = $dataFile->getRandomName();
+            $dataFile->move("uploads/berkas/", $fileName);
+            echo base_url("uploads/berkas/$fileName");
+        }
+    }
+
+    // function deleteGambar()
+    // {
+    //     $src = $this->request->getVar('src');
+    //     //--> uploads/berkas/1630368882_e4a62568c1b50887a8a5.png
+
+    //     //https://localhost:8080/
+    //     if ($src) {
+    //         $file_name = str_replace(base_url() . "/", "", $src);
+    //         if (unlink($file_name)) {
+    //             echo "Delete file berhasil";
+    //         }
+    //     }
+    // }
+
+    public function deleteGambar()
+    {
+        $src = $this->request->getVar('src');
+
+        //https://localhost:8080/
+        if ($src) {
+            // Get the relative path
+            $file_name = str_replace(base_url(), "", $src);
+            // Ensure there's no leading slash
+            $file_name = ltrim($file_name, '/');
+
+            // Ensure file exists before trying to delete it
+            if (file_exists($file_name)) {
+                if (unlink($file_name)) {
+                    echo "Delete file berhasil";
+                } else {
+                    echo "Gagal menghapus file";
+                }
+            } else {
+                echo "File tidak ditemukan";
+            }
+        } else {
+            echo "Path tidak diberikan";
+        }
+    }
+
+    function listGambar()
+    {
+        $files = array_filter(glob('uploads/berkas/*'), 'is_file');
+        $response = [];
+        foreach ($files as $file) {
+            if (strpos($file, "index.html")) {
+                continue;
+            }
+            $response[] = basename($file);
+        }
+        header("Content-Type:application/json");
+        echo json_encode($response);
+        die();
+    }
 }

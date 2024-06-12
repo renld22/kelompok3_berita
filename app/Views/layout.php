@@ -21,7 +21,10 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="/images/favicon.png" />
     <!-- summernote -->
-    <link rel="stylesheet" href="/summernote/summernote.min.css">
+    <link rel="stylesheet" href="/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="/summernote/summernote-image-list.min.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
 </head>
 
 <body>
@@ -219,12 +222,92 @@
     <script src="/js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
     <!-- summernote -->
-    <script src="/summernote/summernote.min.js"></script>
+    <script src="/summernote/summernote-bs4.min.js"></script>
+    <script src="/summernote/summernote-image-list.min.js"></script>
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/36a2be5478.js" crossorigin="anonymous"></script>
 
     <script>
         $(document).ready(function() {
-            $('#konten').summernote();
+            $('#konten').summernote({
+                height: 200,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'imageList', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ],
+                dialogsInBody: true,
+                imageList: {
+                    endpoint: "<?php echo site_url('artikel/listGambar') ?>",
+                    fullUrlPrefix: "<?php echo base_url('uploads/berkas') ?>/",
+                    thumbUrlPrefix: "<?php echo base_url('uploads/berkas') ?>/"
+                },
+                callbacks: {
+                    onImageUpload: function(files) {
+                        for (let i = 0; i < files.length; i++) {
+                            $.upload(files[i]);
+                        }
+                    },
+                    onMediaDelete: function(target) {
+                        $.delete(target[0].src);
+                    }
+                }
+            });
         });
+        $.upload = function(file) {
+            let out = new FormData();
+            out.append('file', file, file.name);
+            $.ajax({
+                method: 'POST',
+                url: '<?php echo site_url('artikel/uploadGambar') ?>',
+                contentType: false,
+                cache: false,
+                processData: false,
+                data: out,
+                success: function(img) {
+                    $('#konten').summernote('insertImage', img);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error(textStatus + " " + errorThrown);
+                }
+            });
+        };
+
+        // $.delete = function(src) {
+        //     $.ajax({
+        //         method: 'POST',
+        // url: '',
+        //         cache: false,
+        //         data: {
+        //             src: src
+        //         },
+        //         success: function(response) {
+        //             console.log(response);
+        //         }
+
+        //     });
+        // };
+
+        $.delete = function(src) {
+            $.ajax({
+                method: 'POST',
+                url: '<?php echo site_url('artikel/deleteGambar') ?>',
+                cache: false,
+                data: {
+                    src: src
+                },
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error: " + status + " " + error);
+                }
+            });
+        };
     </script>
 </body>
 
