@@ -23,35 +23,6 @@
                     <?php endforeach ?>
                 </div>
             </div>
-            <div class="row p-2">
-                <?php foreach ($data as $index => $artikel) : ?>
-                    <div class="card mb-3 mt-2" style="max-width: 800px;">
-                        <div class="row g-2">
-                            <div class="col-md-4">
-                                <img src="<?= base_url("/gambar/") . $artikel['gambar'] ?>" class="img-fluid rounded-start" style="height: 200px; object-fit: cover;" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?= $artikel['judul'] ?></h5>
-                                    <p class="card-text"><?= $artikel['ringkasan'] ?></p>
-                                    <p class="card-text"><small class="text-muted"><?= $artikel['name'] ?></small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach ?>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mt-2 grid-margin stretch-card">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div id="calendar"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -60,6 +31,41 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
+
+            <div class="row p-2">
+                <?php foreach ($data as $index => $artikel) : ?>
+                    <div class="card mb-3 mt-4" style="max-width: 800px;">
+                        <div class="row g-2">
+                            <div class="col-md-4 mr-2">
+                                <img src="<?= base_url("/gambar/") . $artikel['gambar'] ?>" class="img-fluid rounded-start" style="height: 200px; object-fit: cover;" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="<?= url_to('Artikel::index') ?>"><?= $artikel['judul'] ?></a></h5>
+                                    <p class="card-text"><?= $artikel['ringkasan'] ?></p>
+                                    <p class="card-text"><small class="text-muted"><?= $artikel['name'] ?></small></p>
+                                    <p class="card-text"><small class="text-muted"><i class="fa-regular fa-eye"></i></small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-4">
+                        <div id="calendar"></div>
+                    </div>
+                <?php endforeach ?>
+            </div>
+            <!-- <div class="col-md-4 mt-4">
+                <div id="calendar"></div>
+            </div> -->
+            <!-- <div class="row">
+                <div class="col-md-4 mt-2 grid-margin stretch-card">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div id="calendar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
         </div>
     </div>
 </div>
