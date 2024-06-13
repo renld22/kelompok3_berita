@@ -22,3 +22,4 @@ $routes->get('/login', 'Login::index');
 $routes->post('/login/process', 'Login::process');
 $routes->get('/logout', 'Login::logout');
 $routes->get('/berita', 'Berita::index');
+$routes->get('berita/detail/(:num)', 'Berita::detail/$1');

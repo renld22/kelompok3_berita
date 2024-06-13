@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Jun 2024 pada 18.19
--- Versi server: 10.4.25-MariaDB
--- Versi PHP: 7.4.30
+-- Waktu pembuatan: 13 Jun 2024 pada 12.23
+-- Versi server: 10.4.22-MariaDB
+-- Versi PHP: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,7 +43,7 @@ CREATE TABLE `artikel` (
 --
 
 INSERT INTO `artikel` (`id_artikel`, `judul`, `konten`, `ringkasan`, `gambar`, `tanggal`, `view`, `id_user`) VALUES
-(1, 'PHP Dasar', 'ttt', 'Coba CI4', '1718083436_dc5acd575dd067b2800a.jpg', '2024-06-11', 0, 1),
+(1, 'PHP Dasar 4', '<p><b>PHP</b> (Hypertext Preprocessor) adalah bahasa pemrograman server-side yang digunakan secara luas untuk pengembangan web. Berikut adalah beberapa konsep dasar dalam PHP:</p><ol><li><p><strong>Server-side scripting</strong>: PHP digunakan untuk membuat skrip yang dijalankan di sisi server. Artinya, PHP diproses oleh server web sebelum mengirimkan hasilnya ke browser pengguna.</p></li><li><p><strong>Integrasi HTML</strong>: PHP secara alami berintegrasi dengan HTML. Anda dapat menulis kode PHP langsung di dalam dokumen HTML untuk menghasilkan konten dinamis.</p></li><li><p><strong>Variabel</strong>: Variabel digunakan untuk menyimpan informasi seperti teks, angka, atau array. Variabel dimulai dengan tanda dollar <code>$</code> diikuti oleh nama variabel.</p></li></ol>', 'Coba CI4', '1718083436_dc5acd575dd067b2800a.jpg', '2024-06-13', 0, 1),
 (2, 'Session', 'yy', 'coba session', '1717398511_1e04024aae27e8756486.jpg', '2024-06-03', 0, 2),
 (3, 'babab777', 'bajbqbbshqb', 'bhqbxhbhwebc', '1717486440_f3ec6806c22277bc7701.png', '2024-06-03', 0, 2),
 (4, 'jbswqbdb', '<b>bwhqbh</b>', 'hbwhbh', 'C:\\xampp\\tmp\\phpB5A7.tmp', '2024-06-03', 0, 2);

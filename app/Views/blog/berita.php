@@ -46,6 +46,8 @@
                                     <p class="card-text"><small class="text-muted"><?= $artikel['name'] ?></small></p>
                                     <p class="card-text"><small class="text-muted"><i class="fa-regular fa-eye"></i></small></p>
                                 </div>
+                                <a href="<?= base_url('berita/detail/' . $artikel['id_artikel']) ?>" class="btn btn-success">Detail</a>
+
                             </div>
                         </div>
                     </div>

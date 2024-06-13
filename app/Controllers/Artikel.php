@@ -129,4 +129,5 @@ class Artikel extends BaseController
         $this->artikel->delete($id);
         return redirect()->route('Artikel::index')->with('message', 'Hapus Data Bsehasil');
     }
+    
 }
