@@ -32,40 +32,31 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="/images/logo.svg" class="mr-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/images/logo-mini.svg" alt="logo" /></a>
+                <a class="navbar-brand brand-logo mr-5 w-100" href="index.html"><img src="/images/2.png" style="width: 300px; object-fit: cover;" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/images/1.png" style="width: 300px; object-fit: cover; alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="icon-menu"></span>
                 </button>
-                <ul class="navbar-nav mr-lg-2">
-                    <li class="nav-item nav-search d-none d-lg-block">
-                        <div class="input-group">
-                            <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                                <span class="input-group-text" id="search">
-                                    <i class="icon-search"></i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-                        </div>
-                    </li>
-                </ul>
+                
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item nav-profile">
                         <?= session()->get('name'); ?>
                     </li>
                     <li class=" nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <img src="/images/faces/face28.jpg" alt="profile" />
+                            <img src="/images/faces/face.png" alt="profile" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                            
+                        <?php
+                            if (session()->get('hak_akses') == 2) :
+                            ?>
                                 <a href="<?= url_to('Profil::edit') ?>" class="dropdown-item">
                                     <i class="ti-user text-primary"></i>
                                     Profil
                                 </a>
-                            
+                                <?php endif; ?>
 
 
                             <a class="dropdown-item" href="<?= url_to('Login::logout') ?>">
@@ -115,7 +106,9 @@
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
-                    
+                    <?php
+                    if (session()->get('hak_akses') == 1) :
+                    ?>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                                 <i class="icon-head menu-icon"></i>
@@ -129,7 +122,7 @@
                                 </ul>
                             </div>
                         </li>
-                    
+                        <?php endif; ?>
 
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
@@ -165,15 +158,7 @@
                                 <div class="col-12 col-xl-4">
                                     <div class="justify-content-end d-flex">
                                         <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                                            <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                                                <a class="dropdown-item" href="#">January - March</a>
-                                                <a class="dropdown-item" href="#">March - June</a>
-                                                <a class="dropdown-item" href="#">June - August</a>
-                                                <a class="dropdown-item" href="#">August - November</a>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
