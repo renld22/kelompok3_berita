@@ -44,12 +44,12 @@
         <div class="col-lg-12">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <?php foreach ($data as $index => $artikel) : ?>
+                    <?php foreach ($latest as $index => $artikel) : ?>
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?= $index ?>" class="<?= $index === 0 ? 'active' : '' ?>" aria-current="<?= $index === 0 ? 'true' : 'false' ?>" aria-label="Slide <?= $index + 1 ?>"></button>
                     <?php endforeach ?>
                 </div>
                 <div class="carousel-inner">
-                    <?php foreach ($frequent as $index => $artikel) : ?>
+                    <?php foreach ($latest as $index => $artikel) : ?>
                         <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                             <img src="<?= base_url("/gambar/") . $artikel['gambar'] ?>" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="...">
                             <div class="carousel-caption d-none d-md-block">
@@ -81,7 +81,7 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h5 class="card-title"><a href="<?= url_to('Berita::detail', $artikel['id_artikel']); ?>"><?= $artikel['judul'] ?></a></h5>
-                                        <p class=" card-text"><?= $artikel['ringkasan'] ?></p>
+                                        <p class="card-text"><?= $artikel['ringkasan'] ?></p>
                                         <p class="card-text"><small class="text-muted"><?= $artikel['name'] ?></small></p>
                                         <p class="card-text"><small class="text-muted"><?= $artikel['tanggal'] ?></small></p>
                                         <p class="card-text"><small class="text-muted"><i class="fa-regular fa-eye"></i> <?= $artikel['view'] ?></small></p>
@@ -91,7 +91,6 @@
                         </div>
                     <?php endforeach ?>
                     <?= $pager->links('berita', 'pagers') ?>
-
                 </div>
                 <div class="col-lg-4 mt-4">
                     <div id="calendar"></div>
@@ -101,10 +100,10 @@
                             <i class="fab fa-github github-icon"></i> GitHub Repository
                         </a>
                     </div>
-
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 

@@ -17,14 +17,19 @@ class Berita extends BaseController
     {
         $data = [
             'data' => $this->artikel->join("user", "user.id_user = artikel.id_user")
-                ->select("artikel.*, user.name")
-                ->paginate(1, 'berita'), // Changed '1' to '10' for more practical results per page
+                ->select("artikel.*, user.name")->orderBy('id_artikel', 'desc')
+                ->paginate(4, 'berita'), // Changed '1' to '10' for more practical results per page
             'title' => 'Blog',
             'pager' => $this->artikel->pager,
             'frequent' => $this->artikel->join("user", "user.id_user = artikel.id_user")
                 ->select("artikel.*, user.name")
                 ->orderBy('view', 'desc')
-                ->findAll(3)
+                ->findAll(3),
+            'latest' => $this->artikel->join("user", "user.id_user = artikel.id_user")
+            ->select("artikel.*, user.name")
+            ->orderBy('id_artikel', 'desc')
+            ->findAll(3),
+
         ];
         return view('blog/berita', $data);
     }

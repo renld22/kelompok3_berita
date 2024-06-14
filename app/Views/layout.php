@@ -60,14 +60,12 @@
                             <img src="/images/faces/face28.jpg" alt="profile" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                            <?php
-                            if (session()->get('hak_akses') == 2) :
-                            ?>
+                            
                                 <a href="<?= url_to('Profil::edit') ?>" class="dropdown-item">
                                     <i class="ti-user text-primary"></i>
                                     Profil
                                 </a>
-                            <?php endif; ?>
+                            
 
 
                             <a class="dropdown-item" href="<?= url_to('Login::logout') ?>">
@@ -117,9 +115,7 @@
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
-                    <?php
-                    if (session()->get('hak_akses') == 1) :
-                    ?>
+                    
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                                 <i class="icon-head menu-icon"></i>
@@ -133,7 +129,7 @@
                                 </ul>
                             </div>
                         </li>
-                    <?php endif; ?>
+                    
 
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
