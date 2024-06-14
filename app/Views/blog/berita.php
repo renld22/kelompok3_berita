@@ -14,6 +14,11 @@
         /* Menghapus garis bawah */
     }
 
+    .card-berita:hover {
+        transform: scale(1.05);
+        /* Memperbesar card saat hover */
+    }
+
     .card {
         border: 1px solid #ccc;
         border-radius: 8px;
@@ -73,7 +78,7 @@
             <div class="row p-2">
                 <div class="col-lg-8">
                     <?php foreach ($data as $index => $artikel) : ?>
-                        <div class="card mb-3 mt-4" style="max-width: 800px;">
+                        <div class="card card-berita mb-3 mt-4" style="max-width: 800px;">
                             <div class="row g-2">
                                 <div class="col-md-4 mr-2">
                                     <img src="<?= base_url("/gambar/") . $artikel['gambar'] ?>" class="img-fluid rounded-start" style="height: 200px; object-fit: cover;" alt="...">
@@ -99,6 +104,26 @@
                         <a href="https://github.com/renld22/kelompok3_berita.git" class="github-link">
                             <i class="fab fa-github github-icon"></i> GitHub Repository
                         </a>
+                    </div>
+                    <div class="card align-items-center mt-4">
+                        <h4 class="card-title">Sering dilihat</h4>
+
+                        <div class="card-body">
+                            <?php foreach ($frequent as $artikel) : ?>
+                                <div class=" d-flex flex-row justify-content-start w-100">
+                                    <img src="<?= base_url("/gambar/") . $artikel['gambar'] ?>" class="img-fluid me-2" style="width: 150px; max-height:200px; object-fit: cover;" alt="...">
+                                    <div class="d-flex flex-column">
+                                        <h5 class="card-title"><a href="<?= url_to('Berita::detail', $artikel['id_artikel']); ?>"><?= $artikel['judul'] ?></a></h5>
+                                        <p class="card-text"><?= $artikel['ringkasan'] ?></p>
+                                        <p class="card-text"><small class="text-muted"><?= $artikel['name'] ?></small></p>
+                                        <p class="card-text"><small class="text-muted"><?= $artikel['tanggal'] ?></small></p>
+                                        <p class="card-text"><small class="text-muted"><i class="fa-regular fa-eye"></i> <?= $artikel['view'] ?></small></p>
+                                    </div>
+                                </div>
+                                <hr>
+                            <?php endforeach ?>
+                        </div>
+
                     </div>
                 </div>
             </div>
