@@ -49,7 +49,7 @@
                     <?php endforeach ?>
                 </div>
                 <div class="carousel-inner">
-                    <?php foreach ($data as $index => $artikel) : ?>
+                    <?php foreach ($frequent as $index => $artikel) : ?>
                         <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                             <img src="<?= base_url("/gambar/") . $artikel['gambar'] ?>" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="...">
                             <div class="carousel-caption d-none d-md-block">
@@ -84,12 +84,14 @@
                                         <p class=" card-text"><?= $artikel['ringkasan'] ?></p>
                                         <p class="card-text"><small class="text-muted"><?= $artikel['name'] ?></small></p>
                                         <p class="card-text"><small class="text-muted"><?= $artikel['tanggal'] ?></small></p>
-                                        <p class="card-text"><small class="text-muted"><i class="fa-regular fa-eye"></i></small></p>
+                                        <p class="card-text"><small class="text-muted"><i class="fa-regular fa-eye"></i> <?= $artikel['view'] ?></small></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach ?>
+                    <?= $pager->links('berita', 'pagers') ?>
+
                 </div>
                 <div class="col-lg-4 mt-4">
                     <div id="calendar"></div>

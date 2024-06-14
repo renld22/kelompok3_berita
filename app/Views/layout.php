@@ -60,10 +60,16 @@
                             <img src="/images/faces/face28.jpg" alt="profile" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                            <!-- <a class="dropdown-item">
-                                <i class="ti-settings text-primary"></i>
-                                Settings
-                            </a> -->
+                            <?php
+                            if (session()->get('hak_akses') == 2) :
+                            ?>
+                                <a href="<?= url_to('Profil::edit') ?>" class="dropdown-item">
+                                    <i class="ti-user text-primary"></i>
+                                    Profil
+                                </a>
+                            <?php endif; ?>
+
+
                             <a class="dropdown-item" href="<?= url_to('Login::logout') ?>">
                                 <i class=" ti-power-off text-primary"></i>
                                 Logout
@@ -111,20 +117,23 @@
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                            <i class="icon-head menu-icon"></i>
-                            <span class="menu-title">User</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="auth">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="<?= url_to('User::index') ?>"> Data User </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="<?= url_to('User::tambah') ?>"> Tambah Data </a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    <?php
+                    if (session()->get('hak_akses') == 1) :
+                    ?>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                                <i class="icon-head menu-icon"></i>
+                                <span class="menu-title">User</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="auth">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a class="nav-link" href="<?= url_to('User::index') ?>"> Data User </a></li>
+                                    <li class="nav-item"> <a class="nav-link" href="<?= url_to('User::tambah') ?>"> Tambah Data </a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    <?php endif; ?>
 
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
