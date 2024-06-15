@@ -45,7 +45,7 @@
              </div>
              <div class=" form-group">
                  <label for="exampleInputKonten">Konten</label>
-                 <textarea name="konten" id="konten"><?= $artikel['konten']?></textarea>
+                 <textarea name="konten" class="form-control" id="konten"><?= htmlspecialchars($artikel['konten']) ?></textarea>
              </div>
              <div class=" form-group">
                  <label for="exampleInputRingkasan">Ringkasan</label>
