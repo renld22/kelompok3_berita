@@ -32,6 +32,10 @@
         color: #333;
     }
 
+    .card-title:hover {
+        color: blue;
+    }
+
     .github-link {
         text-decoration: none;
         color: #0366d6;
@@ -41,6 +45,10 @@
     .github-icon {
         font-size: 24px;
         margin-right: 5px;
+    }
+
+    .card-judul {
+        font-weight: 650 !important;
     }
 </style>
 
@@ -78,17 +86,17 @@
             <div class="row p-2">
                 <div class="col-lg-8">
                     <?php foreach ($data as $index => $artikel) : ?>
-                        <div class="card card-berita mb-3 mt-4" style="max-width: 800px;">
+                        <div class="card card-berita mb-3 mt-4">
                             <div class="row g-2">
                                 <div class="col-md-4 mr-2">
-                                    <img src="<?= base_url("/gambar/") . $artikel['gambar'] ?>" class="img-fluid rounded-start" style="height: 200px; object-fit: cover;" alt="...">
+                                <a class="artikel-judul" href="<?= url_to('Berita::detail', $artikel['id_artikel']); ?>"><img src="<?= base_url("/gambar/") . $artikel['gambar'] ?>" class="img-fluid rounded-start" style="height: 200px; object-fit: cover;" alt="..."></a>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h5 class="card-title"><a href="<?= url_to('Berita::detail', $artikel['id_artikel']); ?>"><?= $artikel['judul'] ?></a></h5>
+                                        <h5 class="card-title card-judul"><a class="artikel-judul" href="<?= url_to('Berita::detail', $artikel['id_artikel']); ?>"><?= $artikel['judul'] ?></a></h5>
                                         <p class="card-text"><?= $artikel['ringkasan'] ?></p>
-                                        <p class="card-text"><small class="text-muted"><?= $artikel['name'] ?></small></p>
-                                        <p class="card-text"><small class="text-muted"><?= $artikel['tanggal'] ?></small></p>
+                                        <p class="card-text"><small class="text-muted"><?= $artikel['name'] ?> | </small><small class="text-muted"><?= $artikel['tanggal'] ?></p>
+                                        <p class="card-text"></small></p>
                                         <p class="card-text"><small class="text-muted"><i class="fa-regular fa-eye"></i> <?= $artikel['view'] ?></small></p>
                                     </div>
                                 </div>
@@ -105,19 +113,16 @@
                             <i class="fab fa-github github-icon"></i> GitHub Repository
                         </a>
                     </div>
-                    <div class="card align-items-center mt-4">
-                        <h4 class="card-title">Sering dilihat</h4>
+                    <div class="card mt-4">
+                        <h4 class="card-title text-center">Sering dilihat</h4>
 
                         <div class="card-body">
                             <?php foreach ($frequent as $artikel) : ?>
-                                <div class=" d-flex flex-row justify-content-start w-100">
-                                    <img src="<?= base_url("/gambar/") . $artikel['gambar'] ?>" class="img-fluid me-2" style="width: 150px; max-height:200px; object-fit: cover;" alt="...">
+                                <div class=" d-flex flex-row justify-content-start align-items-center w-100">
+                                    <img src="<?= base_url("/gambar/") . $artikel['gambar'] ?>" class="img-fluid flex-1 me-2" style="width: 100px; max-height:100px; object-fit: cover;" alt="...">
                                     <div class="d-flex flex-column">
                                         <h5 class="card-title"><a href="<?= url_to('Berita::detail', $artikel['id_artikel']); ?>"><?= $artikel['judul'] ?></a></h5>
-                                        <p class="card-text"><?= $artikel['ringkasan'] ?></p>
-                                        <p class="card-text"><small class="text-muted"><?= $artikel['name'] ?></small></p>
                                         <p class="card-text"><small class="text-muted"><?= $artikel['tanggal'] ?></small></p>
-                                        <p class="card-text"><small class="text-muted"><i class="fa-regular fa-eye"></i> <?= $artikel['view'] ?></small></p>
                                     </div>
                                 </div>
                                 <hr>
