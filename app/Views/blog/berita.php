@@ -3,15 +3,16 @@
 <?= $this->section('content') ?>
 
 <style>
-    .today {
-        background-color: #ffcc00 !important;
-    }
-
     .card-title a {
-        color: inherit;
-        /* Mengambil warna teks dari induknya */
-        text-decoration: none;
-        /* Menghapus garis bawah */
+            color: inherit;
+            /* Mengambil warna teks dari induknya */
+            text-decoration: none;
+            /* Menghapus garis bawah */
+    }
+    
+    .card-title {
+        margin-bottom: 15px;
+        color: #333;
     }
 
     .card-berita:hover {
@@ -19,36 +20,11 @@
         /* Memperbesar card saat hover */
     }
 
-    .card {
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        /* text-align: center; */
-    }
-
-    .card-title {
-        margin-bottom: 15px;
-        color: #333;
-    }
-
     .card-title:hover {
         color: blue;
     }
-
-    .github-link {
-        text-decoration: none;
-        color: #0366d6;
-        /* Warna teks sesuaikan dengan warna resmi GitHub */
-    }
-
-    .github-icon {
-        font-size: 24px;
-        margin-right: 5px;
-    }
-
-    .card-judul {
-        font-weight: 650 !important;
+    .carousel {
+        background: #f0f0f0;
     }
 </style>
 
@@ -137,45 +113,6 @@
     </div>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            headerToolbar: {
-                left: 'title',
-                center: '',
-                right: 'today,prev,next'
-            },
-            dayCellClassNames: function(arg) {
-                var today = new Date();
-                if (arg.date.getFullYear() === today.getFullYear() && arg.date.getMonth() === today.getMonth() && arg.date.getDate() === today.getDate()) {
-                    return ['today'];
-                }
-                return [];
-            },
-            // events: [
-            //     // Add calendar events here
-            //     {
-            //         title: 'Event 1',
-            //         start: '2024-06-10'
-            //     },
-            //     {
-            //         title: 'Event 2',
-            //         start: '2024-06-15'
-            //     }
-            // ]
-        });
-        calendar.render();
 
-        // Highlight today's date
-        var today = new Date();
-        var dateString = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
-        var todayCell = calendarEl.querySelector('.fc-day[data-date="' + dateString + '"]');
-        if (todayCell) {
-            todayCell.classList.add('today');
-        }
-    });
-</script>
 
 <?= $this->endSection() ?>

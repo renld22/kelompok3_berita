@@ -4,21 +4,48 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title><?= $title ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
     <style>
-        .today {
+    .today {
             background-color: #ffcc00 !important;
-        }
+    }
+    
+    body {
+        background: #F9F9E0 ;
+    }
+     
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* text-align: center; */
+    }
 
-        .card-title a {
-            color: inherit;
-            /* Mengambil warna teks dari induknya */
-            text-decoration: none;
-            /* Menghapus garis bawah */
-        }
+    .github-link {
+        text-decoration: none;
+        color: #0366d6;
+        /* Warna teks sesuaikan dengan warna resmi GitHub */
+    }
+
+    .github-icon {
+        font-size: 24px;
+        margin-right: 5px;
+    }
+
+    .card-judul {
+        font-weight: 650 !important;
+    }
+
+    #calendar {
+        background: #fff;
+        border-radius: 10px;
+        padding: 6px;
+    }
+
     </style>
 
 </head>
@@ -67,6 +94,35 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/36a2be5478.js" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'title',
+                center: '',
+                right: 'today,prev,next'
+            },
+            dayCellClassNames: function(arg) {
+                var today = new Date();
+                if (arg.date.getFullYear() === today.getFullYear() && arg.date.getMonth() === today.getMonth() && arg.date.getDate() === today.getDate()) {
+                    return ['today'];
+                }
+                return [];
+            },
+        });
+        calendar.render();
+
+        // Highlight today's date
+        var today = new Date();
+        var dateString = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+        var todayCell = calendarEl.querySelector('.fc-day[data-date="' + dateString + '"]');
+        if (todayCell) {
+            todayCell.classList.add('today');
+        }
+    });
+</script>
 </body>
 
 </html>

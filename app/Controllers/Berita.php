@@ -19,7 +19,7 @@ class Berita extends BaseController
             'data' => $this->artikel->join("user", "user.id_user = artikel.id_user")
                 ->select("artikel.*, user.name")->orderBy('id_artikel', 'desc')
                 ->paginate(4, 'berita'), // Changed '1' to '10' for more practical results per page
-            'title' => 'Blog',
+            'title' => 'BRIS.FM',
             'pager' => $this->artikel->pager,
             'frequent' => $this->artikel->join("user", "user.id_user = artikel.id_user")
                 ->select("artikel.*, user.name")
@@ -54,7 +54,11 @@ class Berita extends BaseController
 
         $data = [
             'artikel' => $artikel,
-            'title' => 'Detail Artikel',
+            'title' => 'BRIS.FM | '. $artikel['judul'],
+            'frequent' => $this->artikel->join("user", "user.id_user = artikel.id_user")
+                ->select("artikel.*, user.name")
+                ->orderBy('view', 'desc')
+                ->findAll(3)
         ];
 
         return view('blog/detail', $data);
