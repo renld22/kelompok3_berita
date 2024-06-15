@@ -35,7 +35,7 @@ class Login extends BaseController
                     'id_user' => $dataUser['id_user'],
                     'logged_in' => TRUE
                 ]);
-                return redirect()->to(base_url('/'));
+                return redirect()->to(base_url('/dashboard'));
             } else {
                 session()->setFlashdata('error', ['Username & Password Salah']);
                 return redirect()->back();
@@ -48,6 +48,9 @@ class Login extends BaseController
 
     function logout()
     {
+        if (!session()->get('username')) {
+            return redirect()->route('Login::index');
+        }
         session()->destroy();
         return redirect()->to('/login');
     }

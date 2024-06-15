@@ -16,6 +16,9 @@ class Profil extends BaseController
 
     public function edit()
     {
+        if (!session()->get('username')) {
+            return redirect()->route('Login::index');
+        }
         $id = session()->get('id_user');
         $data = [
             'title' => 'Edit Data user',
@@ -27,6 +30,9 @@ class Profil extends BaseController
 
     public function update()
     {
+        if (!session()->get('username')) {
+            return redirect()->route('Login::index');
+        }
         $id = session()->get('id_user');
         $data = [
             'username' => $this->request->getVar('username'),
@@ -48,6 +54,6 @@ class Profil extends BaseController
 
         $this->user->update($id, $data);
 
-        return redirect()->route('Profil::edit')->with('message', 'Ubah Data Bsehasil');
+        return redirect()->route('Profil::edit')->with('message', 'Ubah Data Berhasil');
     }
 }

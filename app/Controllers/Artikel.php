@@ -24,7 +24,9 @@ class Artikel extends BaseController
 
     public function index()
     {
-        
+        if (!session()->get('username')) {
+            return redirect()->route('Login::index');
+        }
         $berita = $this->artikel->join('user', 'user.id_user = artikel.id_user');
         if (session()->get('hak_akses') == 2) {
             $berita->where('artikel.id_user', session()->id_user);
@@ -40,11 +42,17 @@ class Artikel extends BaseController
 
     public function tambah()
     {
+        if (!session()->get('username')) {
+            return redirect()->route('Login::index');
+        }
         return view('artikel/tambah', ['title' => 'Tambah Data Artikel']);
     }
 
     public function save()
     {
+        if (!session()->get('username')) {
+            return redirect()->route('Login::index');
+        }
         $gambar = $this->request->getFile('gambar');
         $filename = $gambar->getRandomName();
         $gambar->move(ROOTPATH . 'public/gambar', $filename);
@@ -71,15 +79,16 @@ class Artikel extends BaseController
         // var_dump($data); die;
 
         $this->artikel->save($data);
-        return redirect()->route('Artikel::tambah')->with('success', 'Tambah Data Berhasil');
+        return redirect()->route('Artikel::index')->with('message', 'Tambah Data Berhasil');
     }
 
     public function edit($id)
     {
-
-
+            if (!session()->get('username')) {
+            return redirect()->route('Login::index');
+        }
         $data = [
-            'title' => 'Edit Data artikel',
+            'title' => 'Edit Data Artikel',
             'data' => $this->artikel->join('user', 'user.id_user = artikel.id_user')
                 ->findAll(),
             'artikel' => $this->artikel->find($id),
@@ -92,6 +101,9 @@ class Artikel extends BaseController
 
     public function update($id)
     {
+        if (!session()->get('username')) {
+            return redirect()->route('Login::index');
+        }
         $tanggal = (new \DateTime())->format('Y-m-d');
         $data = [
             'judul' => $this->request->getVar('judul'),
@@ -121,17 +133,23 @@ class Artikel extends BaseController
 
         $this->artikel->update($id, $data);
 
-        return redirect()->route('Artikel::index')->with('message', 'Ubah Data Bsehasil');
+        return redirect()->route('Artikel::index')->with('message', 'Ubah Data Berhasil');
     }
 
     public function hapus($id)
     {
+        if (!session()->get('username')) {
+            return redirect()->route('Login::index');
+        }
         $this->artikel->delete($id);
-        return redirect()->route('Artikel::index')->with('message', 'Hapus Data Bsehasil');
+        return redirect()->route('Artikel::index')->with('message', 'Hapus Data Berhasil');
     }
 
     function uploadGambar()
     {
+        if (!session()->get('username')) {
+            return redirect()->route('Login::index');
+        }
         if ($this->request->getFile('file')) {
             $dataFile = $this->request->getFile('file');
             $fileName = $dataFile->getRandomName();
@@ -140,22 +158,11 @@ class Artikel extends BaseController
         }
     }
 
-    // function deleteGambar()
-    // {
-    //     $src = $this->request->getVar('src');
-    //     //--> uploads/berkas/1630368882_e4a62568c1b50887a8a5.png
-
-    //     //https://localhost:8080/
-    //     if ($src) {
-    //         $file_name = str_replace(base_url() . "/", "", $src);
-    //         if (unlink($file_name)) {
-    //             echo "Delete file berhasil";
-    //         }
-    //     }
-    // }
-
     public function deleteGambar()
     {
+        if (!session()->get('username')) {
+            return redirect()->route('Login::index');
+        }
         $src = $this->request->getVar('src');
 
         //https://localhost:8080/
@@ -182,6 +189,9 @@ class Artikel extends BaseController
 
     function listGambar()
     {
+        if (!session()->get('username')) {
+            return redirect()->route('Login::index');
+        }
         $files = array_filter(glob('uploads/berkas/*'), 'is_file');
         $response = [];
         foreach ($files as $file) {

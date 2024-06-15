@@ -13,7 +13,7 @@
                     <strong>
                         <?php echo session()->getFlashdata('message'); ?>
                     </strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -52,6 +52,9 @@
                     </tbody>
                 </table>
             </div>
+            <?= $pager->links('user', 'pagers') ?>
+
+            <a href="<?= url_to('User::tambah') ?>" class="btn btn-primary">TAMBAH DATA</a>
             </div>
         </div>
     </div>

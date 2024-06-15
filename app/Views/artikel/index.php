@@ -12,7 +12,7 @@
                 <strong>
                     <?php echo session()->getFlashdata('message'); ?>
                 </strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -37,7 +37,6 @@
                     <?php
                     $no = 1;
                     foreach ($data as $artikel) : ?>
-
                         <tr>
                             <td><?php echo $no++ ?></td>
                             <td><?php echo $artikel['judul'] ?></td>
@@ -55,6 +54,7 @@
                 </tbody>
             </table>
         </div>
+                <a href="<?= url_to('Artikel::tambah') ?>" class="btn btn-primary">TAMBAH DATA</a>
         </div>
     </div>
 </div>

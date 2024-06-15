@@ -75,7 +75,7 @@ margin-right: auto;
                             <p class="card-text"><small class="text-muted">Penulis: <?= $artikel['name'] ?></small></p>
                             <img src="<?= base_url('/gambar/') . $artikel['gambar'] ?>" class="card-img img-fluid rounded" alt="<?= $artikel['judul'] ?>">
                             <p class="card-text"><?= nl2br($artikel['konten']) ?></p>
-                            <a href="<?= base_url('berita') ?>" class="btn btn-primary">Kembali</a>
+                            <a href="<?= url_to('Berita::index') ?>" class="btn btn-primary">Kembali</a>
                         </div>
                     
             </div>

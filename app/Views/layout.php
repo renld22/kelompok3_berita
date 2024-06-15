@@ -32,8 +32,8 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5 w-100" href="index.html"><img src="/images/2.png" style="width: 300px; object-fit: cover;" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/images/1.png" style="width: 300px; object-fit: cover; alt="logo" /></a>
+                <a class="navbar-brand brand-logo mr-5 w-100" href="<?= url_to('Home::index') ?>"><img src="/images/2.png" style="width: 300px; object-fit: cover;" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="<?= url_to('Home::index') ?>"><img src="/images/1.png" style="width: 300px; object-fit: cover; alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -101,7 +101,7 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">
+                        <a class="nav-link" href="<?= url_to('Home::index') ?>">
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
@@ -109,33 +109,20 @@
                     <?php
                     if (session()->get('hak_akses') == 1) :
                     ?>
+                        
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                                <i class="icon-head menu-icon"></i>
-                                <span class="menu-title">User</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                            <div class="collapse" id="auth">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item"> <a class="nav-link" href="<?= url_to('User::index') ?>"> Data User </a></li>
-                                    <li class="nav-item"> <a class="nav-link" href="<?= url_to('User::tambah') ?>"> Tambah Data </a></li>
-                                </ul>
-                            </div>
-                        </li>
+                        <a class="nav-link" href="<?= url_to('User::index') ?>">
+                            <i class="icon-head menu-icon"></i>
+                            <span class="menu-title">User</span>
+                        </a>
+                    </li>
                         <?php endif; ?>
 
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+                     <li class="nav-item">
+                        <a class="nav-link" href="<?= url_to('Artikel::index') ?>">
                             <i class="icon-columns menu-icon"></i>
-                            <span class="menu-title">Form Artikel</span>
-                            <i class="menu-arrow"></i>
+                            <span class="menu-title">Artikel</span>
                         </a>
-                        <div class="collapse" id="form-elements">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="<?= url_to('Artikel::index') ?>"> Data Artikel </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="<?= url_to('Artikel::tambah') ?>"> Tambah Data </a></li>
-                            </ul>
-                        </div>
                     </li>
                 </ul>
             </nav>
@@ -173,11 +160,10 @@
                 <!-- partial:partials/_footer.html -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024. Kelompok 3 <a href="" target="_blank">Pemrograman 4</a></span>
                     </div>
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Distributed by <a href="https://www.themewagon.com/" target="_blank">Themewagon</a></span>
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Angkatan 14</span>
                     </div>
                 </footer>
                 <!-- partial -->
@@ -216,6 +202,10 @@
     <script src="/summernote/summernote-image-list.min.js"></script>
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/36a2be5478.js" crossorigin="anonymous"></script>
+
+<script>
+    $('.alert').alert()
+</script>
 
     <script>
         $(document).ready(function() {

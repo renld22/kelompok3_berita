@@ -5,7 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+$routes->get('/dashboard', 'Home::index');
 $routes->get('/user', 'User::index');
 $routes->get('/user/tambah', 'User::tambah');
 $routes->post('/user/save', 'User::save');
@@ -24,7 +24,7 @@ $routes->get('artikel/listGambar', 'Artikel::listGambar');
 $routes->get('/login', 'Login::index');
 $routes->post('/login/process', 'Login::process');
 $routes->get('/logout', 'Login::logout');
-$routes->get('/berita', 'Berita::index');
+$routes->get('/', 'Berita::index');
 $routes->get('berita/detail/(:num)', 'Berita::detail/$1');
 $routes->get('/profil/ubah', 'Profil::edit');
 $routes->post('/profil/update', 'Profil::update');

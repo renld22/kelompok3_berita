@@ -66,7 +66,7 @@
                  <input type="date" name="tanggal" class="form-control" id="tanggal" placeholder="tanggal">
              </div> -->
              <button type="submit" class="btn btn-primary mr-2">Submit</button>
-             <button class="btn btn-light">Cancel</button>
+             <a href="<?= url_to('Artikel::index') ?>" class="btn btn-light">Cancel</a>
          </form>
          </div>
      </div>
