@@ -25,8 +25,7 @@
                     <tr>
                         <th>No</th>
                         <th>Judul</th>
-                        <th>Konten</th>
-                        <th>Ringkasan</th>
+                        
                         <th>Gambar</th>
                         <th>Tanggal</th>
                         <th>Author</th>
@@ -40,8 +39,7 @@
                         <tr>
                             <td><?php echo $no++ ?></td>
                             <td><?php echo $artikel['judul'] ?></td>
-                            <td><?php echo strip_tags($artikel['konten']) ?></td>
-                            <td><?php echo $artikel['ringkasan'] ?></td>
+                           
                             <td><img src="<?= base_url('gambar/').$artikel['gambar']?>" alt=""></td>
                             <td><?php echo $artikel['tanggal'] ?></td>
                             <td><?php echo $artikel['name'] ?></td>
