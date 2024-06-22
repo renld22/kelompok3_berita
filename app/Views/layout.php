@@ -19,7 +19,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="/css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="/images/favicon.png" />
+    <link rel="shortcut icon" href="/images/4.png" />
     <!-- summernote -->
     <link rel="stylesheet" href="/summernote/summernote-bs4.min.css">
     <link rel="stylesheet" href="/summernote/summernote-image-list.min.css">
